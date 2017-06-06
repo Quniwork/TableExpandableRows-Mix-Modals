@@ -1,0 +1,237 @@
+@charset "UTF-8";
+/*
+ @include MQ(xs) { 481px以上 }
+ @include MQ(sm) { 769px以上 }
+ @include MQ(md) { 961px以上 }
+ @include MQ(custom) { 自訂數值以上(包含自訂數值) }
+
+ @include MQ(onlyMobile) { 手機版以下 (480px 含以下) }
+ @include MQ(onlyTablet) { 平板版 (481-768px 之間) }
+
+ @include MQ(Tablet) { 平板版以下 (768px 含以下) }
+ */
+/* @group Reset */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+html {
+  font-family: sans-serif;
+  font-size: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  position: relative;
+  font-family: ProximaNova,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size: 100%;
+  font-size: 0.86rem;
+  line-height: 1.8;
+  color: #333;
+  background-color: #fff;
+  margin: 0;
+}
+@media screen and (min-width: 481px) {
+  body {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+}
+
+a {
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+a, area, button, input, label, select, summary, textarea {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  touch-action: manipulation;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input[type=checkbox], input[type=radio] {
+  line-height: normal;
+  margin: 4px 0 0;
+  margin-top: 1px\9;
+  padding: 0;
+}
+
+input[type=password], input[type=email], input[type=url], input[type=date], input[type=month], input[type=time], input[type=datetime], input[type=datetime-local], input[type=week], input[type=tel], input[type=color], input[type=number], input[type=search], input[type=text], select, textarea {
+  vertical-align: middle;
+  border-radius: 0;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+/* @end */
+.js-drop {
+  cursor: pointer;
+}
+.js-expand .expand {
+  font-size: 0;
+  line-height: 0;
+}
+.js-expand .expand.is-active {
+  font-size: inherit;
+  line-height: inherit;
+}
+@media (max-width: 480px) {
+  .js-expand .expand {
+    position: relative;
+    background-color: #eee;
+    width: 100%;
+    opacity: 0;
+    overflow-y: auto;
+    visibility: hidden;
+    backface-visibility: hidden;
+    transform: scale(1.2);
+    transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+    margin: 0 auto;
+  }
+  .js-expand .expand.is-active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media screen and (min-width: 481px) {
+  .js-expand .expand {
+    height: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.55, 0, 0.75, 0.95);
+  }
+  .js-expand .expand.is-active {
+    height: auto;
+    max-height: 500px;
+    padding: 1rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #222;
+}
+
+a {
+  color: #fff;
+  opacity: .3;
+}
+a:hover {
+  opacity: 1;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 100;
+  text-align: center;
+  color: #fff;
+  margin-top: 4rem;
+}
+
+.table {
+  max-width: 600px;
+  margin: 4rem auto;
+  width: 90%;
+  font-family: "Raleway";
+  font-size: 0.7rem;
+  background: #f4f4f4;
+}
+.table th {
+  padding: .86rem;
+  font-weight: bold;
+  text-align: left;
+  color: #fff;
+  background: #5c7a1e;
+  border-bottom: 1px solid #5c7a1e;
+}
+.table tr.js-drop {
+  padding: .86rem;
+  color: #fff;
+  background: olivedrab;
+  border-bottom: 1px solid #5c7a1e;
+}
+.table tr.js-drop:hover {
+  background: #4c6519;
+}
+.table tr.js-drop td {
+  padding: 0.86rem;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    min-width: 320px;
+  }
+  table thead {
+    display: none;
+  }
+  table tr.js-drop td {
+    display: block;
+  }
+  table tr.js-drop td:before {
+    content: attr(data-th) " ";
+    display: inline-block;
+    min-width: 100px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.5);
+    padding-right: 10px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

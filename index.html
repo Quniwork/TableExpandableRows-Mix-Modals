@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>RWD Table accordion</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+<body>
+    <h1>Table Accordion</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NUMBER</th>
+                <th>EXPAND TITLE</th>
+                <th>EDIT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="js-drop">
+                <td data-th="NUMBER">#001 ________</td>
+                <td data-th="EXPAND TITLE">EXPAND BUTTON</td>
+                <td data-th="EDIT"><a href="#">EDIT</a></td>
+            </tr>
+            <tr class="js-expand">
+                <td colspan="3" class="expand is-active">
+                    <div class="expand-content">
+                        EXPAND
+                    </div>
+                </td>
+            </tr>
+            <tr class="js-drop">
+                <td data-th="NUMBER">#002 ________</td>
+                <td data-th="EXPAND TITLE">EXPAND BUTTON</td>
+                <td data-th="EDIT"><a href="#">EDIT</a></td>
+            </tr>
+            <tr class="js-expand">
+                <td colspan="3" class="expand is-active">
+                    <div class="expand-content">
+                        EXPAND
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script>
+        var $drop = $(".js-drop"),
+            $expand = $('.js-expand'),
+            expand = ".expand";
+
+        // $drop.click(function() {
+        //     // var target = $(this).next().find(expand);
+        //     // $(expand).not(target).fadeOut(200);
+        //     // target.slideToggle(200);
+        // });
+        $drop.click(function() {
+            var target = $(this).next().find(expand);
+
+            $expand.each(function() {
+                $(expand).not(target).removeClass('is-active');
+            });
+            target.toggleClass('is-active');
+        });
+    </script>
+</body>
+
+</html>

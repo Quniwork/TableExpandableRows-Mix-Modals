@@ -1,0 +1,42 @@
+// media queries
+$custom: 1024px;
+$md: 961px;
+$sm: 769px;
+$xs: 481px;
+
+@mixin MQ($canvas) {
+    @if $canvas == xs {
+        @media screen and (min-width: $xs) { @content; }
+    }
+    @else if $canvas == sm {
+        @media screen and (min-width: $sm) { @content; }
+    }
+    @else if $canvas == md {
+        @media screen and (min-width: $md) { @content; }
+    }
+    @else if $canvas == onlyMobile {
+        @media (max-width: $xs - 1) { @content; }
+    }
+    @else if $canvas == onlyTablet {
+        @media screen and (min-width: $xs) and (max-width: $sm) { @content; }
+    }
+    @else if $canvas == Tablet {
+        @media screen and (max-width: $sm) { @content; }
+    }
+    @else if $canvas == custom {
+        @media screen and (min-width: $custom) { @content; }
+    }
+}
+
+// 模板
+/*
+ @include MQ(xs) { 481px以上 }
+ @include MQ(sm) { 769px以上 }
+ @include MQ(md) { 961px以上 }
+ @include MQ(custom) { 自訂數值以上(包含自訂數值) }
+
+ @include MQ(onlyMobile) { 手機版以下 (480px 含以下) }
+ @include MQ(onlyTablet) { 平板版 (481-768px 之間) }
+
+ @include MQ(Tablet) { 平板版以下 (768px 含以下) }
+ */

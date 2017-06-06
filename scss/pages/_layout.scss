@@ -1,0 +1,180 @@
+$base: olivedrab;
+$speed: 0.6s;
+$delay: ($speed * .5);
+$easing: cubic-bezier(.55,0,.75,.95);
+
+//- js
+.js {
+    &-drop {
+        cursor: pointer;
+    }
+    &-expand .expand {
+        font-size: 0;
+        line-height: 0;
+        &.is-active {
+            font-size: inherit;
+            line-height: inherit;
+        }
+        @include MQ(onlyMobile) {
+            position: relative;
+            background-color: #eee;
+            width: 100%;
+            opacity: 0;
+            overflow-y: auto;
+            visibility: hidden;
+            backface-visibility: hidden;
+            transform: scale(1.2);
+            transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+            margin: 0 auto;
+            &.is-active {
+                visibility: visible;
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @include MQ(xs) {
+            height: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all $speed $easing;
+            &.is-active {
+                height: auto;
+                max-height: 500px;
+                padding: 1rem;
+            }
+        }
+    }
+}
+
+
+
+//- theme
+
+* {
+    box-sizing: border-box;
+}
+body {
+  background: #222;
+}
+a {
+    color: #fff;
+    opacity: .3;
+    &:hover {
+        opacity: 1;
+    }
+}
+h1 {
+    font-size: 2rem;
+    font-weight: 100;
+    text-align: center;
+    color: #fff;
+    margin-top: 4rem;
+}
+.table {
+    max-width: 600px;
+    margin: 4rem auto;
+    width: 90%;
+    font-family: "Raleway";
+    font-size: 0.7rem;
+    background: #f4f4f4;
+    th {
+        padding: .86rem;
+        font-weight: bold;
+        text-align: left;
+        color: #fff;
+        background: darken($base, 5);
+        border-bottom: 1px solid darken($base, 5);
+    }
+    tr {
+        &.js-drop {
+            padding: .86rem;
+            color: #fff;
+            background: $base;
+            border-bottom: 1px solid darken($base, 5);
+            &:hover {
+                background: darken($base, 10);
+            }
+            td {
+                padding: 0.86rem;
+            }
+        }
+        &.js-expand {
+            .expand {
+                // padding: .86rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        min-width: 320px;
+        thead {
+            display: none;
+        }
+        tr {
+            &.js-drop {
+                td {
+                    display: block;
+                    &:before {
+                        content: attr(data-th)' ';
+                        display: inline-block;
+                        min-width: 100px;
+                        font-weight: bold;
+                        color: rgba(#fff, .5);
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// @media screen and (max-width: 600px) {
+//     .js-expand {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         position: fixed;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//         height: 100%;
+//         z-index: 1;
+//         background-color: rgba(#000, 0.3);
+//         opacity: 0;
+//         visibility: hidden;
+//         backface-visibility: hidden;
+//         transition: opacity $speed $easing, visibility $speed $easing;
+//         td {
+//             width: 100%;
+//         }
+//         &.is-active {
+//             opacity: 1;
+//             visibility: visible;
+//             transform: scale(1);
+//         }
+//         .expand {
+//             box-sizing: border-box;
+//             position: relative;
+//             margin: 0 auto;
+//             color: $base;
+//             background-color: #eee;
+//             width: 100%;
+//             min-height: 20rem;
+//             height: 100vh;
+//             opacity: 0;
+//             overflow-y: auto;
+//             visibility: hidden;
+//             backface-visibility: hidden;
+//             transform: scale(1.2);
+//             transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+//             &.is-active {
+//                 visibility: visible;
+//                 opacity: 1;
+//                 transform: scale(1);
+//             }
+//         }
+//     }
+// }
