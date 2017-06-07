@@ -129,19 +129,42 @@ select::-ms-expand {
   line-height: inherit;
 }
 @media (max-width: 480px) {
-  .js-expand .expand {
-    position: relative;
-    background-color: #eee;
+  .js-expand .expand, .js-expand .expand-content {
     width: 100%;
-    opacity: 0;
-    overflow-y: auto;
+    transition: opacity 0.6s cubic-bezier(0.55, 0, 0.75, 0.95), visibility 0.6s cubic-bezier(0.55, 0, 0.75, 0.95);
     visibility: hidden;
     backface-visibility: hidden;
+    opacity: 0;
+  }
+  .js-expand .expand-content {
+    position: relative;
+    min-height: 20rem;
+    height: 100vh;
+    background-color: #fff;
+    overflow-y: auto;
     transform: scale(1.2);
-    transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
     margin: 0 auto;
   }
+  .js-expand .expand {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
   .js-expand .expand.is-active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+  }
+  .js-expand .expand.is-active .expand-content {
     visibility: visible;
     opacity: 1;
     transform: scale(1);
@@ -160,6 +183,13 @@ select::-ms-expand {
     padding: 1rem;
   }
 }
+.js-close {
+  position: absolute;
+  right: 0.86rem;
+  top: 0.86rem;
+  color: olivedrab;
+  transition: opacity 0.6s cubic-bezier(0.55, 0, 0.75, 0.95);
+}
 
 * {
   box-sizing: border-box;
@@ -170,7 +200,6 @@ body {
 }
 
 a {
-  color: #fff;
   opacity: .3;
 }
 a:hover {
@@ -194,7 +223,7 @@ h1 {
   background: #f4f4f4;
 }
 .table th {
-  padding: .86rem;
+  padding: 0.86rem;
   font-weight: bold;
   text-align: left;
   color: #fff;
@@ -202,7 +231,7 @@ h1 {
   border-bottom: 1px solid #5c7a1e;
 }
 .table tr.js-drop {
-  padding: .86rem;
+  padding: 0.86rem;
   color: #fff;
   background: olivedrab;
   border-bottom: 1px solid #5c7a1e;
@@ -231,6 +260,10 @@ h1 {
     font-weight: bold;
     color: rgba(255, 255, 255, 0.5);
     padding-right: 10px;
+  }
+  table tr.js-expand .expand-content {
+    padding: 0.86rem;
+    padding-top: 2.58rem;
   }
 }
 

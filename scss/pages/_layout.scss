@@ -1,4 +1,5 @@
 $base: olivedrab;
+$padding: .86rem;
 $speed: 0.6s;
 $delay: ($speed * .5);
 $easing: cubic-bezier(.55,0,.75,.95);
@@ -8,41 +9,74 @@ $easing: cubic-bezier(.55,0,.75,.95);
     &-drop {
         cursor: pointer;
     }
-    &-expand .expand {
-        font-size: 0;
-        line-height: 0;
-        &.is-active {
-            font-size: inherit;
-            line-height: inherit;
+    &-expand  {
+        .expand {
+            font-size: 0;
+            line-height: 0;
+            &.is-active {
+                font-size: inherit;
+                line-height: inherit;
+            }
         }
         @include MQ(onlyMobile) {
-            position: relative;
-            background-color: #eee;
-            width: 100%;
-            opacity: 0;
-            overflow-y: auto;
-            visibility: hidden;
-            backface-visibility: hidden;
-            transform: scale(1.2);
-            transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
-            margin: 0 auto;
-            &.is-active {
-                visibility: visible;
-                opacity: 1;
-                transform: scale(1);
+            .expand, .expand-content {
+                width: 100%;
+                transition: opacity $speed $easing, visibility $speed $easing;
+                visibility: hidden;
+                backface-visibility: hidden;
+                opacity: 0;
+            }
+            .expand-content {
+                position: relative;
+                min-height: 20rem;
+                height: 100vh;
+                background-color: #fff;
+                overflow-y: auto;
+                transform: scale(1.2);
+                margin: 0 auto;
+            }
+            .expand {
+                @include display-flex;
+                @include align-items(center);
+                @include justify-content(center);
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 1;
+                background-color: rgba(#000, 0.3);
+                &.is-active {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: scale(1);
+                    .expand-content {
+                        visibility: visible;
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
             }
         }
         @include MQ(xs) {
-            height: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all $speed $easing;
-            &.is-active {
-                height: auto;
-                max-height: 500px;
-                padding: 1rem;
+            .expand {
+                height: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: all $speed $easing;
+                &.is-active {
+                    height: auto;
+                    max-height: 500px;
+                    padding: 1rem;
+                }
             }
         }
+    }
+    &-close {
+        position: absolute;
+        right: $padding;
+        top: $padding;
+        color: $base;
+        transition: opacity $speed $easing;
     }
 }
 
@@ -57,7 +91,6 @@ body {
   background: #222;
 }
 a {
-    color: #fff;
     opacity: .3;
     &:hover {
         opacity: 1;
@@ -78,7 +111,7 @@ h1 {
     font-size: 0.7rem;
     background: #f4f4f4;
     th {
-        padding: .86rem;
+        padding: $padding;
         font-weight: bold;
         text-align: left;
         color: #fff;
@@ -87,7 +120,7 @@ h1 {
     }
     tr {
         &.js-drop {
-            padding: .86rem;
+            padding: $padding;
             color: #fff;
             background: $base;
             border-bottom: 1px solid darken($base, 5);
@@ -95,12 +128,7 @@ h1 {
                 background: darken($base, 10);
             }
             td {
-                padding: 0.86rem;
-            }
-        }
-        &.js-expand {
-            .expand {
-                // padding: .86rem;
+                padding: $padding;
             }
         }
     }
@@ -126,55 +154,12 @@ h1 {
                     }
                 }
             }
+            &.js-expand {
+                .expand-content {
+                    padding: $padding;
+                    padding-top: $padding * 3;
+                }
+            }
         }
     }
 }
-
-
-// @media screen and (max-width: 600px) {
-//     .js-expand {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         position: fixed;
-//         top: 0;
-//         left: 0;
-//         width: 100%;
-//         height: 100%;
-//         z-index: 1;
-//         background-color: rgba(#000, 0.3);
-//         opacity: 0;
-//         visibility: hidden;
-//         backface-visibility: hidden;
-//         transition: opacity $speed $easing, visibility $speed $easing;
-//         td {
-//             width: 100%;
-//         }
-//         &.is-active {
-//             opacity: 1;
-//             visibility: visible;
-//             transform: scale(1);
-//         }
-//         .expand {
-//             box-sizing: border-box;
-//             position: relative;
-//             margin: 0 auto;
-//             color: $base;
-//             background-color: #eee;
-//             width: 100%;
-//             min-height: 20rem;
-//             height: 100vh;
-//             opacity: 0;
-//             overflow-y: auto;
-//             visibility: hidden;
-//             backface-visibility: hidden;
-//             transform: scale(1.2);
-//             transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
-//             &.is-active {
-//                 visibility: visible;
-//                 opacity: 1;
-//                 transform: scale(1);
-//             }
-//         }
-//     }
-// }

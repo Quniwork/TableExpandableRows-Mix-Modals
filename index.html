@@ -3,7 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <title>RWD Table accordion</title>
-        <link rel="stylesheet" href="css/style.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css?v=0.2">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
 <body>
     <h1>Table Accordion</h1>
@@ -22,9 +25,9 @@
                 <td data-th="EDIT"><a href="#">EDIT</a></td>
             </tr>
             <tr class="js-expand">
-                <td colspan="3" class="expand is-active">
+                <td colspan="3" class="expand">
                     <div class="expand-content">
-                        EXPAND
+                        EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND EXPAND
                     </div>
                 </td>
             </tr>
@@ -34,7 +37,7 @@
                 <td data-th="EDIT"><a href="#">EDIT</a></td>
             </tr>
             <tr class="js-expand">
-                <td colspan="3" class="expand is-active">
+                <td colspan="3" class="expand">
                     <div class="expand-content">
                         EXPAND
                     </div>
@@ -44,24 +47,25 @@
     </table>
 
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- <script type="text/javascript" src="js/vue.js"></script> -->
     <script>
         var $drop = $(".js-drop"),
             $expand = $('.js-expand'),
             expand = ".expand";
+            active = "is-active";
 
-        // $drop.click(function() {
-        //     // var target = $(this).next().find(expand);
-        //     // $(expand).not(target).fadeOut(200);
-        //     // target.slideToggle(200);
-        // });
         $drop.click(function() {
             var target = $(this).next().find(expand);
 
             $expand.each(function() {
-                $(expand).not(target).removeClass('is-active');
+                $(expand).not(target).removeClass(active);
             });
-            target.toggleClass('is-active');
+            target.toggleClass(active).append('<a href="#" class="js-close"><i class="material-icons">close</i></a>');
+        });
+        $('.js-close').on('click', '.selector', function(e) {
+            e.preventDefault();
+            console.log('123');
+            $(expand).removeClass(active);
         });
     </script>
 </body>
