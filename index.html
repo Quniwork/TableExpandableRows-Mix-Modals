@@ -62,9 +62,9 @@
             });
             target.toggleClass(active).append('<a href="#" class="js-close"><i class="material-icons">close</i></a>');
         });
-        $('.js-close').on('click', '.selector', function(e) {
+
+        $(document).on("click", ".js-close", function(e) {
             e.preventDefault();
-            console.log('123');
             $(expand).removeClass(active);
         });
     </script>
