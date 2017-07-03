@@ -77,6 +77,9 @@ $easing: cubic-bezier(.55,0,.75,.95);
         top: $padding;
         color: $base;
         transition: opacity $speed $easing;
+        @include MQ(xs) {
+            display: none;
+        }
     }
 }
 
@@ -134,7 +137,7 @@ h1 {
     }
 }
 
-@media screen and (max-width: 600px) {
+@include MQ(onlyMobile) {
     table {
         min-width: 320px;
         thead {
@@ -155,9 +158,9 @@ h1 {
                 }
             }
             &.js-expand {
-                .expand-content {
+                .is-active .expand-content {
                     padding: $padding;
-                    padding-top: $padding * 3;
+                    padding-top: $padding * 4;
                 }
             }
         }
